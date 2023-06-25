@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      window.onload = function() {
+        fetch('https://docs.google.com/spreadsheets/d/15PE8FfHD3yvPkhRI--Bem2AXRaZQfn81XG2j4QObxmc/export?format=csv')
+          .then(function(response) {
+            return response.text();
+          })
+          .then(function(csvData) {
+            var links = csvData.split('\n');
+            var randomIndex = Math.floor(Math.random() * links.length);
+            var randomLink = links[randomIndex].trim();
+
+            if (randomLink !== "") {
+              window.location.href = randomLink;
+            }
+          })
+          .catch(function(error) {
+            console.error('Error:', error);
+          });
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Redirecting...</h1>
+  </body>
+</html>
